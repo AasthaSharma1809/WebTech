@@ -1,13 +1,21 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = htmlspecialchars($_POST['email']);
-    $password = $_POST['password'];
+session_start();
 
-    // Fetch stored password from the database based on the email
-    // Verify the password using password_verify()
-    // For now, we assume verification is successful
-    session_start();
-    $_SESSION['user'] = $email;
-    echo "Login successful!";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $password = trim($_POST['password']);
+
+    // Read user data from a JSON file
+    $data = file_get_contents('users.json');
+    $users = json_decode($data, true);
+
+    if (isset($users[$email]) && password_verify($password, $users[$email]['password'])) {
+        $_SESSION['user'] = $email;
+        echo "Login successful!";
+        header("Location: dashboard.php");
+        exit();
+    } else {
+        echo "Invalid email or password.";
+    }
 }
 ?>
