@@ -1,13 +1,31 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $phone = htmlspecialchars($_POST['phone']);
-    $dob = htmlspecialchars($_POST['dob']);
+    $name = htmlspecialchars(trim($_POST['name']));
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
-    // Save to database (you will need to configure your database connection)
-    // For now, we assume success and redirect to the login page
-    header("Location: login.html");
+    // Read existing users from the file
+    $data = file_get_contents('users.json');
+    $users = json_decode($data, true);
+
+    if (!$users) {
+        $users = [];
+    }
+
+    if (isset($users[$email])) {
+        echo "Email already exists. Please use a different email.";
+    } else {
+        $users[$email] = [
+            'name' => $name,
+            'password' => $password
+        ];
+
+        // Save updated user data back to the file
+        file_put_contents('users.json', json_encode($users));
+
+        echo "Registration successful!";
+        header("Location: login.html");
+        exit();
+    }
 }
 ?>
