@@ -29,7 +29,6 @@
             </div>
         </form>
 
-        <!-- This section will be displayed after successful registration -->
         <div id="successMessage" style="display:none;">
             <h3>Registration Successful!</h3>
             <p><strong>Name:</strong> <span id="displayName"></span></p>
@@ -50,20 +49,16 @@
                 const phone = $("#phone").val();
                 const password = $("#password").val();
 
-                // Send the form data to register.php using AJAX
                 $.ajax({
                     url: "register.php",
                     method: "POST",
                     data: { name: name, email: email, phone: phone, password: password },
                     success: function (response) {
                         if (response.success) {
-                            // Display the submitted information
                             $("#successMessage").show();
                             $("#displayName").text(response.data.name);
                             $("#displayEmail").text(response.data.email);
                             $("#displayPhone").text(response.data.phone);
-
-                            // Optionally, you can hide the registration form after success
                             $("#registrationForm").hide();
                         } else {
                             alert(response.message);
