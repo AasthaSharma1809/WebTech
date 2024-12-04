@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Success</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Successful!</h2>
+        <p>Thank you for registering. Here are your details:</p>
+        
+        <ul>
+            <li><strong>Name:</strong> <span id="name"></span></li>
+            <li><strong>Email:</strong> <span id="email"></span></li>
+            <li><strong>Phone:</strong> <span id="phone"></span></li>
+        </ul>
+
+        <a href="login.html">Go to Login</a>
+    </div>
+
+    <script>
+        // Get URL query parameters
+        const params = new URLSearchParams(window.location.search);
+
+        // Display the submitted data
+        document.getElementById("name").textContent = params.get("name");
+        document.getElementById("email").textContent = params.get("email");
+        document.getElementById("phone").textContent = params.get("phone");
+    </script>
+</body>
+</html>
