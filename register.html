@@ -17,11 +17,23 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
             <button type="submit">Register</button>
         </form>
+
+        <!-- This section will be displayed after successful registration -->
+        <div id="successMessage" style="display:none;">
+            <h3>Registration Successful!</h3>
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+        </div>
+
         <p>Already have an account? <a href="login.html">Login here</a></p>
     </div>
 
@@ -30,20 +42,31 @@
             $("#registrationForm").on("submit", function (e) {
                 e.preventDefault();
 
+                const name = $("#name").val();
                 const email = $("#email").val();
+                const phone = $("#phone").val();
                 const password = $("#password").val();
 
-                if (localStorage.getItem(email)) {
-                    alert("Email is already registered!");
-                } else {
-                    const userData = {
-                        name: $("#name").val(),
-                        password: password
-                    };
-                    localStorage.setItem(email, JSON.stringify(userData));
-                    alert("Registration successful!");
-                    window.location.href = "login.html";
-                }
+                // Send the form data to register.php using AJAX
+                $.ajax({
+                    url: "register.php",
+                    method: "POST",
+                    data: { name: name, email: email, phone: phone, password: password },
+                    success: function (response) {
+                        if (response.success) {
+                            // Display the submitted information
+                            $("#successMessage").show();
+                            $("#displayName").text(response.data.name);
+                            $("#displayEmail").text(response.data.email);
+                            $("#displayPhone").text(response.data.phone);
+
+                            // Optionally, you can hide the registration form after success
+                            $("#registrationForm").hide();
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
             });
         });
     </script>
