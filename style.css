@@ -74,6 +74,7 @@ form {
     display: flex;
     gap: 20px; /* Space between buttons */
     justify-content: center; /* Center the buttons */
+    width: 100%; /* Ensure full width for centering */
 }
 
 button {
