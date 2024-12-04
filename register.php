@@ -23,5 +23,7 @@ foreach ($users as $user) {
 $users[] = ['name' => $name, 'email' => $email, 'phone' => $phone, 'password' => $password];
 file_put_contents($usersFile, json_encode($users));
 
-echo json_encode(["success" => true, "message" => "Registration successful!"]);
+// Redirect to the success page with the submitted data
+header("Location: registration-success.html?name=$name&email=$email&phone=$phone");
+exit;
 ?>
