@@ -5,16 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to Our Website</h1>
-        <p>To get started:</p>
-        <ul>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
+        <p>Please choose an option to continue:</p>
+
+        <!-- Register Button -->
+        <button id="registerBtn">Register</button>
+
+        <!-- Login Button -->
+        <button id="loginBtn">Login</button>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            // Button click events to navigate
+            $("#registerBtn").on("click", function () {
+                window.location.href = "register.html";
+            });
+
+            $("#loginBtn").on("click", function () {
+                window.location.href = "login.html";
+            });
+
+            // Fade-in animation
+            $(".container").hide().fadeIn(1000);
+        });
+    </script>
 </body>
 </html>
+
 
