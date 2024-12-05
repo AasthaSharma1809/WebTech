@@ -12,7 +12,7 @@ body {
     max-width: 500px;  /* Increased width */
     margin: 50px auto;
     padding: 30px;
-    background-color: white;
+    background-color: beige;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
@@ -37,7 +37,7 @@ input, select {
 /* Button Styles */
 button {
     background-color: #007bff;
-    color: white;
+    color: beige;
     border: none;
     padding: 12px 15px;
     margin: 10px 0;
@@ -55,7 +55,7 @@ button:hover {
 /* Special Buttons */
 #userDetails button {
     background-color: #28a745;
-    color: white;
+    color: beige;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -71,7 +71,7 @@ button:hover {
 a {
     display: block;
     text-decoration: none;
-    color: white;
+    color: beige;
     text-align: center;
     padding: 10px;
     border-radius: 5px;
