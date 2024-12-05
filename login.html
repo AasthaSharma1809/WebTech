@@ -17,27 +17,29 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <div class="buttons">
-                <button type="submit">Login</button>
-                <button type="button" onclick="window.location.href='register.html'">Register</button>
-            </div>
+            <button type="submit">Login</button>
         </form>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
 
     <script>
         $(document).ready(function () {
             $("#loginForm").on("submit", function (e) {
                 e.preventDefault();
+                const email = $("#email").val().trim();
+                const password = $("#password").val().trim();
+                const storedData = localStorage.getItem(email);
 
-                const email = $("#email").val();
-                const password = $("#password").val();
-                const userData = JSON.parse(localStorage.getItem(email));
-
-                if (userData && userData.password === password) {
-                    alert("Logged in successfully!");
-                    window.location.href = "welcome.html";
+                if (!storedData) {
+                    alert("Email not registered. Please register first.");
                 } else {
-                    alert("Invalid email or password!");
+                    const userData = JSON.parse(storedData);
+                    if (userData.password === password) {
+                        alert("Login successful!");
+                        window.location.href = "welcome.html";
+                    } else {
+                        alert("Incorrect password. Please try again.");
+                    }
                 }
             });
         });
