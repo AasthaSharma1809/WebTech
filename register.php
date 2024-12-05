@@ -23,10 +23,5 @@ foreach ($users as $user) {
 $users[] = ['name' => $name, 'email' => $email, 'phone' => $phone, 'password' => $password];
 file_put_contents($usersFile, json_encode($users));
 
-// Return success and user data
-echo json_encode(["success" => true, "message" => "Registration successful!", "data" => [
-    'name' => $name,
-    'email' => $email,
-    'phone' => $phone
-]]);
+echo json_encode(["success" => true, "message" => "Registration successful!"]);
 ?>
