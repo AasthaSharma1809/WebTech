@@ -1,4 +1,6 @@
 <?php
+session_start();  // Start the session to store user details
+
 header("Content-Type: application/json");
 
 // Load existing users from JSON file
@@ -22,6 +24,14 @@ foreach ($users as $user) {
 // Add new user to the list
 $users[] = ['name' => $name, 'email' => $email, 'phone' => $phone, 'password' => $password];
 file_put_contents($usersFile, json_encode($users));
+
+// Store user data in session for later display on the confirmation page
+$_SESSION['user'] = [
+    'name' => $name,
+    'email' => $email,
+    'phone' => $phone,
+    'gender' => $_POST['gender']
+];
 
 echo json_encode(["success" => true, "message" => "Registration successful!"]);
 ?>
