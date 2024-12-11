@@ -3,64 +3,78 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, blue 0%, pink 100%);
+    background: linear-gradient(135deg, #a8c18d, #80fffb); /* Softer gradient */
     color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
 }
 
-/* Container Styles - Increased width */
+/* Container Styles - Centered with padding and border */
 .container {
-    max-width: 500px;  /* Increased width */
-    margin: 50px auto;
-    padding: 30px;
-    background-color: beige;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    max-width: 550px;  /* Increased width for better readability */
+    width: 100%;
+    margin: 20px;
+    padding: 40px;
+    background-color: #fdfdfd;  /* Slightly lighter beige */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     text-align: center;
+    overflow: hidden;
 }
 
 /* Heading Styles */
 h1, h2 {
-    color: #444;
+    color: #333;
+    font-weight: 600;
 }
 
-/* Form Elements - Adjusted Alignment */
+/* Form Elements - Adjusted for full-width input and better spacing */
 input, select {
     display: block;
-    width: 90%;  /* Full width with padding */
-    padding: 12px;
-    margin: 10px auto;
-    border-radius: 5px;
+    width: 100%;  /* Full width with padding */
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    text-align: left;  /* Align text to the left */
+    font-size: 16px;
+    box-sizing: border-box;  /* Avoids input overflow */
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;  /* Focus color for input */
 }
 
 /* Button Styles */
 button {
     background-color: #007bff;
-    color: beige;
+    color: #fff;
     border: none;
-    padding: 12px 15px;
-    margin: 10px 0;
-    width: 90%;  /* Matching form width */
+    padding: 14px;
+    margin: 12px 0;
+    width: 100%;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-/* Special Buttons */
+/* Special Button Styles */
 #userDetails button {
     background-color: #28a745;
-    color: beige;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 90%;  /* Matching form width */
+    color: #fff;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 8px;
 }
 
 #userDetails button:hover {
@@ -69,17 +83,35 @@ button:hover {
 
 /* Link Styling */
 a {
-    display: block;
+    display: inline-block;
     text-decoration: none;
-    color: beige;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
+    color: #fff;
     background-color: #007bff;
-    width: 90%;
-    margin: 10px auto;
+    padding: 14px;
+    margin: 12px 0;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 a:hover {
-    background-color: #0056b3;
+    background-color: #0056b3;
+}
+
+/* Responsive Design: Adjust for small screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+
+    button, a, input, select {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
 }
