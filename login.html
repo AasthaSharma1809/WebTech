@@ -5,44 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="login-box">
         <h2>Login</h2>
-        <form id="loginForm">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Login</button>
+        <form action="login.php" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
         </form>
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
-
-    <script>
-        $(document).ready(function () {
-            $("#loginForm").on("submit", function (e) {
-                e.preventDefault();
-                const email = $("#email").val().trim();
-                const password = $("#password").val().trim();
-                const storedData = localStorage.getItem(email);
-
-                if (!storedData) {
-                    alert("Email not registered. Please register first.");
-                } else {
-                    const userData = JSON.parse(storedData);
-                    if (userData.password === password) {
-                        alert("Login successful!");
-                        window.location.href = "welcome.html";
-                    } else {
-                        alert("Incorrect password. Please try again.");
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
