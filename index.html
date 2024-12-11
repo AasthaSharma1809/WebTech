@@ -1,38 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Our Website</h1>
-        <p>Please choose an option to continue:</p>
+  <div class="container">
+    <h1>Welcome to Our Website</h1>
+    <p>Please choose an option to continue:</p>
 
-        <!-- Register Button -->
-        <button id="registerBtn">Register</button>
+    <button id="registerBtn">Register</button>
+    <button id="loginBtn">Login</button>
+  </div>
 
-        <!-- Login Button -->
-        <button id="loginBtn">Login</button>
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            // Button click events to navigate
-            $("#registerBtn").on("click", function () {
-                window.location.href = "register.html";
-            });
-
-            $("#loginBtn").on("click", function () {
-                window.location.href = "login.html";
-            });
-
-            // Fade-in animation
-            $(".container").hide().fadeIn(1000);
-        });
-    </script>
-</body>
+  <script src="https://code.jquery/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>  </body>
 </html>
