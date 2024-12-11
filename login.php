@@ -5,7 +5,7 @@ header("Content-Type: application/json");
 $usersFile = 'users.json';
 $users = file_exists($usersFile) ? json_decode(file_get_contents($usersFile), true) : [];
 
-
+// Get data from the POST request
 $email = $_POST['email'];
 $password = $_POST['password'];
 
