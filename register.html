@@ -47,49 +47,36 @@
         </div>
     </div>
 
-   <script>
-    $(document).ready(function () {
-        $("#registrationForm").on("submit", function (e) {
-            e.preventDefault();
+    <script>
+        $(document).ready(function () {
+            $("#registrationForm").on("submit", function (e) {
+                e.preventDefault();
 
-            const email = $("#email").val().trim();
-            const password = $("#password").val().trim();
-            const name = $("#name").val().trim();
-            const phone = $("#phone").val().trim();
-            const gender = $("#gender").val();
+                const email = $("#email").val().trim();
+                const password = $("#password").val().trim();
+                const name = $("#name").val().trim();
+                const phone = $("#phone").val().trim();
+                const gender = $("#gender").val();
 
-            $.ajax({
-                url: 'register.php',  // Your PHP file that processes the registration
-                type: 'POST',
-                data: {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    password: password
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        // Show the user details
-                        $("#displayName").text(name);
-                        $("#displayEmail").text(email);
-                        $("#displayPhone").text(phone);
-                        $("#displayGender").text(gender);
+                if (localStorage.getItem(email)) {
+                    alert("This email is already registered.");
+                } else {
+                    const userData = { name, phone, gender, password };
+                    localStorage.setItem(email, JSON.stringify(userData));
 
-                        // Show the registration summary
-                        $("#userDetails").fadeIn();
-                        $("#registrationForm").hide();
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function() {
-                    alert("An error occurred while processing the registration.");
+                    // Display user details on the page
+                    $("#displayName").text(name);
+                    $("#displayEmail").text(email);
+                    $("#displayPhone").text(phone);
+                    $("#displayGender").text(gender);
+
+                    // Show the user details section
+                    $("#userDetails").fadeIn();
+                    $("#registrationForm").hide(); // Hide form after displaying the summary
                 }
             });
         });
-    });
-</script>
-
+    </script>
 </body>
 </html>
+
