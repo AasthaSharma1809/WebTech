@@ -1,7 +1,7 @@
 <?php
-header("Content-Type: application/json"); 
+header("Content-Type: application/json");
 
-// Load existing users from the JSON file
+// Load existing users from JSON file
 $usersFile = 'users.json';
 $users = file_exists($usersFile) ? json_decode(file_get_contents($usersFile), true) : [];
 
@@ -21,8 +21,6 @@ foreach ($users as $user) {
 
 // Add new user to the list
 $users[] = ['name' => $name, 'email' => $email, 'phone' => $phone, 'password' => $password];
-
-// Save updated users list back to the JSON file
 file_put_contents($usersFile, json_encode($users));
 
 echo json_encode(["success" => true, "message" => "Registration successful!"]);
