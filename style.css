@@ -10,6 +10,7 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
+    flex-direction: column; /* Center elements vertically */
 }
 
 /* Container Styles - Centered with padding and border */
@@ -23,6 +24,9 @@ body {
     border-radius: 15px;
     text-align: center;
     overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center the content horizontally */
 }
 
 /* Heading Styles */
@@ -34,7 +38,7 @@ h1, h2 {
 /* Form Elements - Adjusted for full-width input and better spacing */
 input, select {
     display: block;
-    width: 100%;  /* Full width with padding */
+    width: 80%;  /* Set a fixed width for inputs */
     padding: 14px;
     margin: 12px 0;
     border-radius: 8px;
@@ -56,7 +60,7 @@ button {
     border: none;
     padding: 14px;
     margin: 12px 0;
-    width: 100%;
+    width: 80%;  /* Set a fixed width for buttons */
     cursor: pointer;
     font-size: 16px;
     border-radius: 8px;
@@ -74,6 +78,7 @@ button:hover {
     color: #fff;
     padding: 14px;
     margin: 12px 0;
+    width: 80%;  /* Set a fixed width for special button */
     border-radius: 8px;
 }
 
@@ -89,7 +94,7 @@ a {
     background-color: #007bff;
     padding: 14px;
     margin: 12px 0;
-    width: 100%;
+    width: 80%;  /* Set a fixed width for links */
     text-align: center;
     border-radius: 8px;
     transition: background-color 0.3s ease;
@@ -109,6 +114,7 @@ a:hover {
     button, a, input, select {
         padding: 12px;
         font-size: 14px;
+        width: 90%;  /* Make inputs and buttons wider on small screens */
     }
 
     h1 {
