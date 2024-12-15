@@ -1,6 +1,16 @@
 <?php
+// Start the session
+session_start();
+
 // Initialize message variable
 $message = "";
+
+// Check if the user is already logged in
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    // Redirect to a logged-in page or show a success message
+    header("Location: dashboard.php");  // Redirect to another page (e.g., dashboard.php)
+    exit();
+}
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -17,9 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userFound = false;
         foreach ($users as $user) {
             if ($user['email'] == $email && password_verify($password, $user['password'])) {
+                // User is found and credentials are correct
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user'] = $user;  // Store user info in the session
                 $message = "Login successful!";
-                $userFound = true;
-                break;
+                // Redirect to the dashboard or user page
+                header("Location: dashboard.php");
+                exit();
             }
         }
 
@@ -48,15 +62,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p><?php echo $message; ?></p>
 
         <!-- Login Form -->
-        <form method="POST" action="login.php">
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+        <?php if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] === false): ?>
+            <form method="POST" action="login.php">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
 
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
 
-            <input type="submit" value="Login">
-        </form>
+                <input type="submit" value="Login">
+            </form>
+        <?php endif; ?>
     </div>
 </body>
 </html>
