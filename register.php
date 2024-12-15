@@ -89,6 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     <!-- Go back to registration -->
                     <a href="register.php"><button>Go Back to Registration Form</button></a>
+                    
+                    <!-- Add login button -->
+                    <a href="login.php"><button>Go to Login</button></a> <!-- Link to login page -->
                 </div>
             <?php endif; ?>
         <?php endif; ?>
