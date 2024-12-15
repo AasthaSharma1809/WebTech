@@ -53,6 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "<p>Email: " . htmlspecialchars($email) . "</p>";
     echo "<p>Phone: " . htmlspecialchars($phone) . "</p>";
     echo "<p>Gender: " . htmlspecialchars($gender) . "</p>";
+
+    // Provide a button to go back to the form
+    echo '<br><br><a href="register.php"><button>Go Back to Registration Form</button></a>';
+
+    exit; // Stop further execution
 }
 ?>
 
@@ -67,27 +72,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <h1>Register</h1>
 
-<form method="POST" action="register.php">
-    <label for="name">Full Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+<!-- Display the registration form only if the form has not been submitted yet -->
+<?php if ($_SERVER['REQUEST_METHOD'] != 'POST'): ?>
+    <form method="POST" action="register.php">
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
 
-    <label for="phone">Phone Number:</label><br>
-    <input type="text" id="phone" name="phone" required><br><br>
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
 
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
 
-    <label for="gender">Gender:</label><br>
-    <input type="radio" id="male" name="gender" value="Male" required>
-    <label for="male">Male</label>
-    <input type="radio" id="female" name="gender" value="Female" required>
-    <label for="female">Female</label><br><br>
+        <label for="gender">Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female" required>
+        <label for="female">Female</label><br><br>
 
-    <input type="submit" value="Register">
-</form>
+        <input type="submit" value="Register">
+    </form>
+<?php endif; ?>
 
 </body>
 </html>
